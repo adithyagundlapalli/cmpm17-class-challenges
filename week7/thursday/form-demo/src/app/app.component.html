@@ -1,20 +1,26 @@
 <div class="form-container">
-  <form>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <h2>Sign up today!</h2>
     <p>Sign up today and get started.</p>
     <!-- Name -->
     <label for="name">Name:</label>
-    <input type="text" name="name" required>
+    <input type="text" name="name" required ngModel />
     <!-- Email -->
     <label for="email">Email:</label>
-    <input type="email" name="email" required>
+    <input type="email" name="email" required ngModel email />
     <!-- Validation Check -->
-    
+    @if (form.invalid && form.touched){
+      <p>Form is invalid.</p>
+    }
+
+    @if (form.valid && form.touched){
+      <p>Form is valid.</p>
+    }
+
     <!-- Submission Button -->
     <button type="submit">Sign up!</button>
-  </form>  
+  </form>
   <!-- Submission Response -->
-
 </div>
 
 <router-outlet />
